@@ -105,7 +105,7 @@ public class QAgent : MonoBehaviour
     }
 
     public virtual void OnEpisodeEnd(){
-        //Debug.Log("OnEpisodeEnd()");
+        Debug.Log(string.Format("Episode {0} finished. Total Episode Reward: {1}. Printing Q Table", currentEpisode, totalEpisodeReward));
         PrintQTable();
         currentEpisode += 1;
         currentIteration = 0;
@@ -114,7 +114,7 @@ public class QAgent : MonoBehaviour
     }
 
     public virtual void OnEpisodeBegin(){
-        //Debug.Log("OnEpisodeBegin()");
+        totalEpisodeReward = 0;
         currentState = 0;
         currentAction = GetRandomAction();
     }
