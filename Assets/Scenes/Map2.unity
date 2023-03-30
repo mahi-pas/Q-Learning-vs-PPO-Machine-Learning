@@ -568,6 +568,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 74667255247790139, guid: cb2cdc1357dac3b459f2e2aef8d697a1, type: 3}
+      propertyPath: loadBestTable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 190012362356776728, guid: cb2cdc1357dac3b459f2e2aef8d697a1, type: 3}
       propertyPath: m_RootOrder
       value: 2

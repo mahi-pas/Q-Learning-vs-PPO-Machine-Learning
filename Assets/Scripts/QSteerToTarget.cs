@@ -17,13 +17,24 @@ public class QSteerToTarget : QAgent
         3: Hit Target
      */
 
+     /*
+     Best Table:
+    (257.5778,720.5385,255.8222)
+    (276.9714,719.3155,291.2688)
+    (388.7945,351.0731,714.1392)
+    (0,0,0)
+
+      */
+
     [Header("MoveToTarget")]
     public Transform target;
     public float moveSpeed = 3f;
     public float rotationSpeed = 100f;
     public float goalRadius = 0.3f;
+    public float distanceDeltaCutoff = 0.1f;
     public bool loadBestTable = false;
     public float coneAngle = 10f;
+    public float lastAngle;
 
     [Header("Visualization")]
     [SerializeField] private Color winColor;
@@ -34,13 +45,15 @@ public class QSteerToTarget : QAgent
         base.Start();
 
         if (loadBestTable) LoadBestTable();
+
+        lastAngle = SteerAngle(transform.position, target.position);
     }
 
     public override void OnEpisodeBegin(){
         base.OnEpisodeBegin();
         transform.rotation = Quaternion.identity;
-        transform.localPosition = new Vector3(Random.Range(0f,8f), Random.Range(3.5f,-3.5f), 0);
-        target.transform.localPosition = new Vector3(Random.Range(-1f,-8f), Random.Range(3.5f,-3.5f), 0);
+        transform.localPosition = new Vector3(Random.Range(-8f,8f), Random.Range(3.5f,-3.5f), 0);
+        target.transform.localPosition = new Vector3(Random.Range(-8f,8f), Random.Range(3.5f,-3.5f), 0);
     }
 
     public override int GetNextState(int currentState, int currentAction){
@@ -68,18 +81,20 @@ public class QSteerToTarget : QAgent
             floor.color = winColor;
             Debug.Log("Done!");
             done = true;
-            return 100f;
+            return 1000f;
         }
+        float reward = 0f;
         float targetDistanceDelta = Vector2.Distance(newPosition, target.localPosition) - Vector2.Distance(oldPosition, target.localPosition);
+        if (targetDistanceDelta < distanceDeltaCutoff) targetDistanceDelta = 0;
         if (targetDistanceDelta > 0){
             //further from target, punish
-            return -1f;
+            reward += -1f;
         }
         else if(targetDistanceDelta < 0){
             //closer to target, reward
-            return 1f;
+            reward += 1f;
         }
-        return 0f;
+        return reward;
     }
 
     public void ExecuteAction(int action){
@@ -106,8 +121,16 @@ public class QSteerToTarget : QAgent
         return Vector3.Cross(transform.up, target-position).z < 0f;
     }  
 
+    public float SteerAngle(Vector2 position, Vector2 target){
+        return Vector2.Angle(transform.up, target-position);
+    }
+
     private bool InCone(Vector2 position, Vector2 target){
         return Vector2.Angle(transform.up, target-position) < coneAngle;
+    }  
+
+    private bool InBehindCone(Vector2 position, Vector2 target){
+        return Vector2.Angle(-transform.up, target-position) < coneAngle;
     }  
 
 
@@ -117,6 +140,21 @@ public class QSteerToTarget : QAgent
         explorationProbability = 0f;
         minExplorationProbability = 0f;
 
+        QTable = new float[,] {
+        {257.5778f,720.5385f,255.8222f},
+        {276.9714f,719.3155f,291.2688f},
+        {388.7945f,351.0731f,714.1392f},
+        {0,0,0}
+        };
+
+    }
+
+    //used for show, not used in training (It doesn't provide any punishment)
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Wall"){
+            floor.color = loseColor;
+            done = true;
+        }
     }
 
 

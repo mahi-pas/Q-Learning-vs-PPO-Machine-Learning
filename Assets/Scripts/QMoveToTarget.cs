@@ -169,5 +169,12 @@ public class QMoveToTarget : QAgent
         };
     }
 
+    //used for show, not used in training (It doesn't provide any punishment)
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Wall"){
+            floor.color = loseColor;
+            done = true;
+        }
+    }
 
 }

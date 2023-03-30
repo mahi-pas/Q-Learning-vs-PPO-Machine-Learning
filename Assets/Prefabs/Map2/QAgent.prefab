@@ -67,8 +67,10 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 360
   goalRadius: 1
+  distanceDeltaCutoff: 0.05
   loadBestTable: 0
   coneAngle: 10
+  lastAngle: 0
   winColor: {r: 0.34901962, g: 0.8666667, b: 0.3019608, a: 1}
   loseColor: {r: 0.7176471, g: 0.2, b: 0.11764706, a: 1}
   floor: {fileID: 0}
