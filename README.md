@@ -29,6 +29,7 @@ Features:
   - 4 direction move to goal
   - Tank/Spaceship controls move to goal
 - Live Q Learning training screen that displays Q Table and training data in real time
+- Ability to change timescale
 - PPO ML Agent using Unity ML Agents Package for same scenarios Q Learning uses
 - This project is open source, feel free to use it in your projects!
     
