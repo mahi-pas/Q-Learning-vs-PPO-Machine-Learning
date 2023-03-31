@@ -1,6 +1,7 @@
 # Q Learning vs PPO Machine Learning
-Play demo here: 
-Features:
+Play demo here: https://rainyelephant.itch.io/ai-demo-q-learning-vs-ppo-machine-learning
+
+## Features:
 - Q Learning fully implemented from scratch
   - Ability to customize these settings:
     - number of episodes
