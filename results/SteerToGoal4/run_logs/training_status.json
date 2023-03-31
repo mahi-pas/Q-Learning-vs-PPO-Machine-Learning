@@ -1,0 +1,29 @@
+{
+    "SteerToTarget": {
+        "checkpoints": [
+            {
+                "steps": 235836,
+                "file_path": "results\\SteerToGoal4\\SteerToTarget\\SteerToTarget-235836.onnx",
+                "reward": null,
+                "creation_time": 1680219640.7371917,
+                "auxillary_file_paths": [
+                    "results\\SteerToGoal4\\SteerToTarget\\SteerToTarget-235836.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 235836,
+            "file_path": "results\\SteerToGoal4\\SteerToTarget.onnx",
+            "reward": null,
+            "creation_time": 1680219640.7371917,
+            "auxillary_file_paths": [
+                "results\\SteerToGoal4\\SteerToTarget\\SteerToTarget-235836.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.13.1+cu117"
+    }
+}

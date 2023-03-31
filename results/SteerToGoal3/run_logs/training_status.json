@@ -1,0 +1,38 @@
+{
+    "SteerToTarget": {
+        "checkpoints": [
+            {
+                "steps": 499971,
+                "file_path": "results\\SteerToGoal3\\SteerToTarget\\SteerToTarget-499971.onnx",
+                "reward": 80.40599890053272,
+                "creation_time": 1680218792.353154,
+                "auxillary_file_paths": [
+                    "results\\SteerToGoal3\\SteerToTarget\\SteerToTarget-499971.pt"
+                ]
+            },
+            {
+                "steps": 500035,
+                "file_path": "results\\SteerToGoal3\\SteerToTarget\\SteerToTarget-500035.onnx",
+                "reward": 80.40599890053272,
+                "creation_time": 1680218792.417684,
+                "auxillary_file_paths": [
+                    "results\\SteerToGoal3\\SteerToTarget\\SteerToTarget-500035.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500035,
+            "file_path": "results\\SteerToGoal3\\SteerToTarget.onnx",
+            "reward": 80.40599890053272,
+            "creation_time": 1680218792.417684,
+            "auxillary_file_paths": [
+                "results\\SteerToGoal3\\SteerToTarget\\SteerToTarget-500035.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.13.1+cu117"
+    }
+}

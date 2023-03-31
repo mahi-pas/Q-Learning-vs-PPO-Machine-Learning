@@ -1,14 +1,12 @@
 /*
     Q Learning Agents Class
-    https://github.com/mahi-pas/Q-Learning-Package-Unity
+    https://github.com/mahi-pas/Q-Learning-vs-PPO-Machine-Learning
     
     How to use:
     - Make your script inherit from QAgent
     - Overload your own definitions for:
         - GetNextState()
         - GetReward()
-
-    Look at example/ for examples
 
  */
 
@@ -37,10 +35,10 @@ public class QAgent : MonoBehaviour
 
     [Header("Current Episode Settings")]
     [SerializeField] private int currentIteration = 0;
-    [SerializeField] private int currentEpisode = 0; 
+    public int currentEpisode = 0; 
     [SerializeField] private int currentState = 0; 
     [SerializeField] private int currentAction = 0;
-    [SerializeField] private float totalEpisodeReward = 0f;
+    public float totalEpisodeReward = 0f;
     [SerializeField] public bool done = false;
 
     
@@ -80,7 +78,6 @@ public class QAgent : MonoBehaviour
     public virtual void Iterate(){
         Vector2 oldPos = transform.localPosition;
         currentAction = ChooseAction(currentState);
-        //Debug.Log("Action: "+currentAction);
         int nextState = GetNextState(currentState, currentAction);
         Vector2 newPos = transform.localPosition;
         float reward = GetReward(oldPos, newPos, nextState); 

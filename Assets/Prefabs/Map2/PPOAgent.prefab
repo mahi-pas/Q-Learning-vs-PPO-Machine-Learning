@@ -93,11 +93,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2894488405786210679}
-  - component: {fileID: 2894488405786210673}
-  - component: {fileID: 2894488405786210672}
-  - component: {fileID: 2894488405786210674}
+  - component: {fileID: 9089123417747858553}
+  - component: {fileID: 6296546536683011321}
   - component: {fileID: 3501705723008428719}
   - component: {fileID: 1724784451355769350}
+  - component: {fileID: 2480519616929932635}
   m_Layer: 0
   m_Name: PPOAgent
   m_TagString: Untagged
@@ -121,7 +121,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2894488405786210673
+--- !u!114 &9089123417747858553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 6
+    VectorObservationSize: 9
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 2
@@ -143,15 +143,15 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: b7eac7caa82655a45b263a644b87b6bd, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
-  m_BehaviorName: MoveToGoal
+  m_BehaviorName: SteerToTarget
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
   m_ObservableAttributeHandling: 0
---- !u!114 &2894488405786210672
+--- !u!114 &6296546536683011321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2894488405786210678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91520654f90553641a2d8a10bbae7352, type: 3}
+  m_Script: {fileID: 11500000, guid: 6cc1a8bc63a157949911d636ae5bc5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agentParameters:
@@ -168,24 +168,11 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 1000
   target: {fileID: 0}
-  moveSpeed: 10
-  winColor: {r: 0.3485402, g: 0.8679245, b: 0.30022538, a: 1}
-  loseColor: {r: 0.7169812, g: 0.19811316, b: 0.11949679, a: 1}
+  moveSpeed: 5
+  rotationSpeed: 100
+  winColor: {r: 0.34901962, g: 0.8666667, b: 0.3019608, a: 1}
+  loseColor: {r: 0.7176471, g: 0.2, b: 0.11764706, a: 1}
   floor: {fileID: 0}
---- !u!114 &2894488405786210674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2894488405786210678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DecisionPeriod: 5
-  TakeActionsBetweenDecisions: 1
 --- !u!50 &3501705723008428719
 Rigidbody2D:
   serializedVersion: 4
@@ -223,3 +210,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &2480519616929932635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894488405786210678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  TakeActionsBetweenDecisions: 1
