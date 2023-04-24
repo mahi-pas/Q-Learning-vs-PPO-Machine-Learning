@@ -13,6 +13,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class QAgent : MonoBehaviour
 {
@@ -41,10 +42,17 @@ public class QAgent : MonoBehaviour
     public float totalEpisodeReward = 0f;
     [SerializeField] public bool done = false;
 
+    [Header("Data Science")]
+    public List<float> finishTimes;
+    public List<float> currentEpoch;
+    public int epochLength = 5;
+
     
 
     public virtual void Start(){
         InitializeQTable();
+        finishTimes = new List<float>();
+        currentEpoch = new List<float>();
         currentIteration = 0;
         currentEpisode = 0;
         time = 0f;
@@ -102,8 +110,16 @@ public class QAgent : MonoBehaviour
     }
 
     public virtual void OnEpisodeEnd(){
-        Debug.Log(string.Format("Episode {0} finished. Total Episode Reward: {1}. Printing Q Table", currentEpisode, totalEpisodeReward));
-        PrintQTable();
+        //Debug.Log(string.Format("Episode {0} finished. Total Episode Reward: {1}. Printing Q Table", currentEpisode, totalEpisodeReward));
+        //PrintQTable();
+        currentEpoch.Add(currentIteration);
+
+        if (currentEpisode % epochLength == 0){
+            finishTimes.Add(currentEpoch.Average());
+            currentEpoch = new List<float>();
+            Debug.Log(this.name + " " + string.Join(",",finishTimes));
+        }
+
         currentEpisode += 1;
         currentIteration = 0;
         explorationProbability = Mathf.Max(minExplorationProbability, Mathf.Exp(-explorationDecay * currentEpisode));
